@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="description" content="Data Visualisation Exercise 1"/>
+    <meta name="keywords" content="HTML, CSS"/>
+    <meta name="author" content="Your name here"/>
+
+    <title>Task 2.2</title>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+
+
+</head>
+
+<body>
+
+<h1>Title of Article about Interesting Visualisation</h1>
+<h2>Author of Interesting Article</h2>
+
+
+<footer>COS30045 Data Visualisation</footer>
+
+<div id="test" style="border: 1px red solid">
+
+</div>
+
+<script>
+
+    // 计算画布的宽度和高度
+    let width = 500;
+    let height = 300;
+    var dataSet = [4, 90, 80, 10, 50, 80, 60];
+    var svg = d3.select("#test").append("svg").attr("width", width).attr("height", height).style("border", "1px green solid")
+
+    // 所有的聚集在一起
+    // svg.selectAll("rect")
+    //     .data(dataSet)
+    //     .enter()
+    //     .append("rect")
+    //     .attr("x", 0)
+    //     .attr("y", 0)
+    //     .attr("width", 20)
+    //     .attr("height", 100);
+
+
+    //显示束状条纹
+    // svg.selectAll("rect")
+    //     .data(dataSet)
+    //     .enter()
+    //     .append("rect")
+    //     .attr("x", function (d,i)
+    //     {
+    //         return i * 21;
+    //     })
+    //     .attr("y", 0)
+    //     .attr("width", 20)
+    //     .attr("height", 100);
+
+
+    // 尝试使用D3 直接获取目标元素的attr
+    const wight = svg.attr("width")
+
+    // D3 使用元素 平均分割List
+    // svg.selectAll("rect")
+    //     .data(dataSet)
+    //     .enter()
+    //     .append("rect")
+    //     .attr("x", function (d,i)
+    //     {
+    //         return i * (wight / dataSet.length);
+    //     })
+    //     .attr("y", 0)
+    //     .attr("width", 20)
+    //     .attr("height", 100);
+
+
+    // D3 根据元素的大小显示 Bar 的长度
+    svg.selectAll("rect")
+        .data(dataSet)
+        .enter()
+        .append("rect")
+        .attr("x", function(d, i) {
+            return i * (width / dataSet.length);  // 每个矩形的水平位置
+        })
+        .attr("y", function(d) {
+            return height - d;  // 矩形的垂直位置，确保从底部开始
+        })
+        .attr("width", (width / dataSet.length) - 2)  // 每个矩形的宽度
+        .attr("height", function(d) {
+            return d;  // 矩形的高度由数据决定
+        });
+
+    svg.selectAll("text")
+        .data(dataSet)
+        .enter()
+        .append("text")
+        .text(function(d) {
+            return d;
+        })
+        .attr("x", function(d, i) {
+            //确保数据居中
+            return i * (width / dataSet.length) + (width / dataSet.length) / 2;
+        })
+        .attr("y", function(d) {
+            return height - d - 5;
+        })
+        .attr("text-anchor", "middle")
+        .attr("font-size", "12px")
+        .attr("fill", "green");
+
+</script>
+</body>
+</html>

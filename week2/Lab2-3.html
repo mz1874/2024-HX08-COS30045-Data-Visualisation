@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="description" content="Data Visualisation Exercise 1"/>
+    <meta name="keywords" content="HTML, CSS"/>
+    <meta name="author" content="Your name here"/>
+
+    <title>Task 2.3</title>
+    <!--Insert description of exercise  -->
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+
+
+</head>
+
+<body>
+<div id="test">
+
+</div>
+
+<footer>COS30045 Data Visualisation</footer>
+
+<script>
+    var dataSet = [
+        [5, 200],
+        [20, 400],
+        [32, 34],
+        [66, 372],
+        [20, 14],
+        [77, 384],
+        [138, 200],
+        [443, 223],
+        [32, 238],
+        [48, 44],
+        [113, 23],
+    ]
+
+    let width = 1000;
+    let height = 500;
+    var svg = d3.select("#test").append("svg").attr("width", width).attr("height", height).style("border", "1px green solid")
+    svg.selectAll("circle").data(dataSet).enter().append("circle").attr("cx", function (d, i) {
+        return d[0];
+    }).attr("cy", function (d, i) {
+        return d[1];
+    }).attr("r", 5)
+        .attr("fill", "slategrey")
+
+
+    svg.selectAll("text").data(dataSet).enter().append("text").text(function (d) {
+        return d[0] + ",\t" + d[1];
+    }).attr("x", function (d, i) {
+        //确保数据居中
+        return d[0] -30;
+    })
+        .attr("y", function (d) {
+            return d[1]+40;
+        })
+
+</script>
+</body>
+</html>

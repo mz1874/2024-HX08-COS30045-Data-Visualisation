@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="description" content="Data Visualisation Exercise 1"/>
+    <meta name="keywords" content="HTML, CSS"/>
+    <meta name="author" content="Your name here"/>
+
+    <title>Task 2.1 Data binding</title>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+</head>
+
+<body>
+
+<h1>Task 2.1 Data binding</h1>
+<h2>Wang Chong</h2>
+
+
+<footer>COS30045 Data Visualisation</footer>
+<script>
+    // d3.select("body").append("p").text("Hello D3");
+    var dataSet = [1, 2, 4, 7, 8];
+    // d3.select("body").selectAll("p").data(dataSet).enter().append("p").text("Hello");
+
+    // d3.select("body").selectAll("p").data(dataSet).enter().append("p").text(function (d) {
+    //     return d;
+    // });
+
+    //Change color
+    // d3.select("h2").style("color","red")
+
+
+    d3.select("body").selectAll("p").data(dataSet).enter().append("p").text(function (d){
+        if (d%2== 0)
+        {
+            return "I am odd!";
+        }else {
+            return d;
+        }
+    }).style("color", function (d, i){
+        if (d%2== 0)
+        {
+            return "green";
+        }
+    })
+</script>
+</body>
+</html>

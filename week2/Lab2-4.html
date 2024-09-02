@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="description" content="Data Visualisation Exercise 1"/>
+    <meta name="keywords" content="HTML, CSS"/>
+    <meta name="author" content="Your name here"/>
+
+    <title>Task 2.3</title>
+    <!--Insert description of exercise  -->
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+
+
+</head>
+
+<body>
+<div id="test">
+
+</div>
+
+<footer>COS30045 Data Visualisation</footer>
+
+<script>
+
+
+    function barChart(val) {
+        svg.selectAll("rect").data(val).enter().append("rect").attr("x", function (d, i) {
+            return i * (width  / val.length);
+        }).attr("y",function (d,i){
+            return height -(d.)
+        })
+    }
+
+    let width = 1000;
+    let height = 500;
+
+    let wombatSightings;
+    var svg = d3.select("#test").append("svg").attr("width", width).attr("height", height).style("border", "1px green solid")
+    d3.csv("csv.csv").then(function (data) {
+        wombatSightings = data
+        barChart(wombatSightings);
+    })
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="description" content="Data Visualisation Exercise 1"/>
+    <meta name="keywords" content="HTML, CSS"/>
+    <meta name="author" content="Your name here"/>
+    <title>Task 1.2 JS page</title>
+    <link rel="stylesheet" href="../css/home.css"></link>
+
+</head>
+
+<body>
+<ul>
+    <li>
+        <a href="Lab1.html">Lab1</a>
+    </li>
+
+    <li>
+        <a href="Lab3.html">Lab3</a>
+    </li>
+</ul>
+<h1>Title of Article about Interesting Visualisation</h1>
+<h2>Author of Interesting Article: Wang Chong</h2>
+
+<p>
+    Pets and the Pandemic
+    A report from <b>Animal Medicines Australia (AMA)</b> has found that many Australians took the opportunity to
+    introduce a
+    pet into their household during the pandemic. Their survey indicated that there was a significant increase in the
+    percent of households taking in a new dog, fish or bird. Their <i>research</i> also indicated that pets had a number
+    of
+    positive influences on their lives such as:
+</p>
+<ul>
+    <li>companionship</li>
+    <li>better mental health</li>
+    <li>joy and happiness.</li>
+</ul>
+
+
+With the increase in pet ownership the AMA are encouraging policy makers to consider the needs of companion animals and
+their owners when considering rental, strata and body corporate regulations are well as accepting animals in public
+places and transport.
+<br>
+<br>
+<button class="button1" onclick="changeImage('2019.png','Fig.1 - 2019.')">2019</button>
+<button class="button2" onclick="changeImage('2021.png','Fig.2 - 2021.')">2021</button>
+<button class="button3" onclick="changeImage('2019&2021.png','Both.')">Both</button>
+
+<br>
+<br>
+
+<footer>COS30045 Data Visualisation</footer>
+
+<figure>
+    <img id="showImg" src="../img/2019.png" alt="pic"/>
+    <figcaption id="context">Fig.1 - Trulli, Puglia, Italy.</figcaption>
+</figure>
+
+
+</body>
+<script>
+
+    /**
+     * This function is used to change the background of image tag
+     * @param arg
+     */
+    function changeImage(arg, context) {
+        document.getElementById("showImg").src = arg;
+        document.getElementById("context").innerText = context;
+
+    }
+</script>
+</html>
