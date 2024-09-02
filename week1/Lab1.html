@@ -5,9 +5,25 @@
     <meta name="description" content="Data Visualisation Exercise 1"/>
     <meta name="keywords" content="HTML, CSS"/>
     <meta name="author" content="Your name here"/>
-    <title>Task 1.1 HTML and CSS Demo Page</title>
+    <title>LAB 1.1 HTML and CSS Review</title>
     <link rel="stylesheet"  href="../css/home.css"></link>
+    <style>
 
+        .image-container {
+
+            display: flex;
+            justify-content: center; /* 水平居中 */
+            align-items: center; /* 垂直居中 */
+            flex-direction: row; /* 图片水平排列 */
+        }
+        .image-container img{
+            width: 33%;
+            margin: 0 10px; /* 图片之间的间距 */
+        }
+
+
+
+    </style>
 </head>
 
 <body>
@@ -42,9 +58,15 @@ places and transport.
 
 <figure>
     <img src="../img/pet_ownership_in_australia_table.png" alt="CLick me"/>
-    <figcaption>Fig.1 - Trulli, Puglia, Italy. <a href="javascript:void(0)">Click here</a></figcaption>
+    <figcaption>Fig.1 - Comparison of pet Ownership in 2019 and 2021. Data Source: <a href="https://animalmedicinesaustralia.org.au/wp-content/uploads/2021/08/AMAU005-PATP-Report21_v1.41_WEB.pdf">Animal Medicines Australia Report</a></figcaption>
 </figure>
 
+
+<div class="image-container" style="border: 1px red solid">
+    <img  src="../img/cat.jpg">
+    <img src="../img/dog.png">
+    <img src="../img/fish.jpg">
+</div>
 
 <footer>COS30045 Data Visualisation</footer>
 
