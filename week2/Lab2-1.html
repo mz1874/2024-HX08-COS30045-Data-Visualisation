@@ -12,31 +12,34 @@
 </head>
 
 <body>
-
-<h1>Task 2.1 Data binding</h1>
+<ul>
+    <li>
+        <a href="../index.html">HOME</a>
+    </li>
+    <li>
+        <a href="Lab2-2.html">Lab2-2</a>
+    </li>
+    <li>
+        <a href="Lab2-3.html">Lab2-3</a>
+    </li>
+    <li>
+        <a href="Lab2-4.html">Lab2-4</a>
+    </li>
+</ul>
+<h1>LAB 2.1 D3 Drawing with Data - Binding</h1>
 <h2>Wang Chong</h2>
 
 
 <footer>COS30045 Data Visualisation</footer>
 <script>
-    // d3.select("body").append("p").text("Hello D3");
     var dataSet = [1, 2, 4, 7, 8];
-    // d3.select("body").selectAll("p").data(dataSet).enter().append("p").text("Hello");
-
-    // d3.select("body").selectAll("p").data(dataSet).enter().append("p").text(function (d) {
-    //     return d;
-    // });
-
-    //Change color
-    // d3.select("h2").style("color","red")
-
 
     d3.select("body").selectAll("p").data(dataSet).enter().append("p").text(function (d){
         if (d%2== 0)
         {
-            return "I am odd!";
+            return "I am an even number!" + d;
         }else {
-            return d;
+            return "I am an odd number!" + d;
         }
     }).style("color", function (d, i){
         if (d%2== 0)
