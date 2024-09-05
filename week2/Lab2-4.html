@@ -5,13 +5,10 @@
     <meta charset="UTF-8"/>
     <meta name="description" content="Data Visualisation Exercise 1"/>
     <meta name="keywords" content="HTML, CSS"/>
-    <meta name="author" content="Your name here"/>
+    <meta name="author" content="Wang Chong"/>
 
     <title>LAB 2.4 D3 Loading Data from CSV</title>
-    <!--Insert description of exercise  -->
     <script src="https://d3js.org/d3.v7.min.js"></script>
-
-
 </head>
 
 <body>
@@ -32,34 +29,10 @@
 
 <h1>LAB 2.4 D3 Loading Data from CSV</h1>
 <h2>Wang Chong</h2>
-<div id="test">
-
-</div>
+<div id="test"></div>
 
 <footer>LAB 2.4 D3 Loading Data from CSV</footer>
 
-<script>
-
-
-    function barChart(val) {
-        svg.selectAll("rect").data(val).enter().append("rect").attr("x", function (d, i) {
-            return i * (width  / val.length);
-        }).attr("y",function (d,i){
-            return height -(d.)
-        })
-    }
-
-    let width = 1000;
-    let height = 500;
-
-    let wombatSightings;
-    var svg = d3.select("#test").append("svg").attr("width", width).attr("height", height).style("border", "1px green solid")
-    d3.csv("csv.csv").then(function (data) {
-        wombatSightings = data
-        barChart(wombatSightings);
-    })
-
-
-</script>
+<script src="../js/lab2-4.js"></script>
 </body>
 </html>
