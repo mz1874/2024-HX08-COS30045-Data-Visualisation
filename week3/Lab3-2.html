@@ -7,7 +7,7 @@
     <meta name="keywords" content="HTML, CSS"/>
     <meta name="author" content="Your name here"/>
 
-    <title>LAB 3.1 D3 Scaling your Charts</title>
+    <title>LAB 3.2 D3 Adding Axis to your Charts</title>
     <!--Insert description of exercise  -->
     <script src="https://d3js.org/d3.v7.min.js"></script>
 
@@ -20,11 +20,11 @@
         <a href="../index.html">HOME</a>
     </li>
     <li>
-        <a href="lab3-2.html">Lab3-2</a>
+        <a href="lab3-1.html">Lab3-1</a>
     </li>
 </ul>
 
-<h1>LAB 3.1 D3 Scaling your Charts</h1>
+<h1>LAB 3.2 D3 Adding Axis to your Charts</h1>
 <h2>Wang Chong</h2>
 <div id="test">
 
@@ -44,7 +44,7 @@
         [482, 400],
         [32, 34],
         [66, 372],
-        [333, 40],
+        [333, 60],
         [77, 384],
         [138, 200],
         [443, 223],
@@ -58,7 +58,7 @@
         return d[0]
     }), d3.max(dataSet, function (d) {
         return d[0]
-    })]).range([50, width - 50])
+    })]).range([100, width - 100])
 
 
     var yScale = d3.scaleLinear().domain([d3.min(dataSet, function (d) {
@@ -66,8 +66,11 @@
         return d[1]
     }), d3.max(dataSet, function (d) {
         return d[1]
-    })]).range([height - 50, 50]);
+    })]).range([height - 100, 100]);
 
+
+    var xAxis = d3.axisBottom().ticks(5).scale(xScale);
+    var yAxis = d3.axisLeft().ticks(10).scale(yScale);
 
     var svg = d3.select("#test").append("svg").attr("width", width).attr("height", height).style("border", "1px green solid")
     svg.selectAll("circle")
@@ -81,19 +84,22 @@
             return yScale(d[1]);
         })
         .attr("r", 5)
-        .attr("fill", function(d) {
+        .attr("fill", function (d) {
             return d[0] > 400 ? "red" : "slategrey";
         });
 
     svg.selectAll("text").data(dataSet).enter().append("text").text(function (d) {
         return d[0] + ",\t" + d[1];
     }).attr("x", function (d, i) {
+        // 确保数据居中
         return xScale(d[0]) - 30;
     })
         .attr("y", function (d) {
             return yScale(d[1]) + 40;
         });
+    svg.append("g").call(yAxis).attr("transform", "translate(50, 0)");
 
+    svg.append("g").call(xAxis).attr("transform", "translate(0," + (height - 50) + ")");
 
 </script>
 </body>
