@@ -56,43 +56,56 @@
         [113, 23],
     ]
 
+    /**
+     * In this part, the min-axis is not zero,
+     */
     var xScale = d3.scaleLinear().domain([d3.min(dataSet, function (d) {
-        console.log(d)
         return d[0]
     }), d3.max(dataSet, function (d) {
         return d[0]
+        //padding
     })]).range([50, width - 50])
 
 
+    /**
+     * Y domain
+     */
     var yScale = d3.scaleLinear().domain([d3.min(dataSet, function (d) {
-        console.log(d)
         return d[1]
     }), d3.max(dataSet, function (d) {
         return d[1]
+        //padding
     })]).range([height - 50, 50]);
 
-
+    //  create the main avg shown as d3 js
     var svg = d3.select("#test").append("svg").attr("width", width).attr("height", height).style("border", "1px green solid")
+
     svg.selectAll("circle")
         .data(dataSet)
         .enter()
-        .append("circle")
-        .attr("cx", function (d, i) {
+        .append("circle")   //draw a circle
+        .attr("cx", function (d, i) {  //position cx
             return xScale(d[0]);
         })
-        .attr("cy", function (d, i) {
+        .attr("cy", function (d, i) {  //position cy
             return yScale(d[1]);
         })
-        .attr("r", 5)
-        .attr("fill", function(d) {
+        .attr("r", 5)   // ratio
+        .attr("fill", function (d) {
             return d[0] > 400 ? "red" : "slategrey";
         });
 
+    /**
+     * add text to each data point
+     */
     svg.selectAll("text").data(dataSet).enter().append("text").text(function (d) {
+        // detailed data
         return d[0] + ",\t" + d[1];
     }).attr("x", function (d, i) {
+        // position
         return xScale(d[0]) - 30;
     })
+        // position
         .attr("y", function (d) {
             return yScale(d[1]) + 40;
         });

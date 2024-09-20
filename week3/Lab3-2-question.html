@@ -55,54 +55,62 @@
         [113, 80],
     ]
 
+    // domain and range for xScale
     var xScale = d3.scaleLinear().domain([0, d3.max(dataSet, function (d) {
         return d[0]
     })]).range([100, width - 100])
 
 
+    // domain and range for YScale
     var yScale = d3.scaleLinear().domain([0, d3.max(dataSet, function (d) {
         return d[1]
     })]).range([height - 100, 100]);
 
-
+    //create x and y axis
     var xAxis = d3.axisBottom().ticks(10).scale(xScale);
     var yAxis = d3.axisLeft().ticks(10).scale(yScale);
 
+    //create main svg part
     var svg = d3.select("#test").append("svg").attr("width", width).attr("height", height).style("border", "1px green solid")
     svg.selectAll("circle")
         .data(dataSet)
         .enter()
         .append("circle")
-        .attr("cx", function (d, i) {
+        .attr("cx", function (d, i) {  //position
             return xScale(d[0]);
         })
-        .attr("cy", function (d, i) {
+        .attr("cy", function (d, i) { //position
             return yScale(d[1]);
         })
         .attr("r", 5)
-        .attr("fill", function (d) {
+        .attr("fill", function (d) {  // according to different values change color
             return d[0] > 400 ? "red" : "slategrey";
         });
 
     svg.selectAll("text").data(dataSet).enter().append("text").text(function (d) {
         return d[0] + ",\t" + d[1];
     }).attr("x", function (d, i) {
-        // 确保数据居中
+        // central data
         return xScale(d[0]) - 30;
     })
         .attr("y", function (d) {
             return yScale(d[1]) + 40;
         });
+
+    // change position for y
     svg.append("g").call(yAxis).attr("transform", "translate(80, 0)");
 
+    // chang position
     svg.append("g").call(xAxis).attr("transform", "translate(0," + (height - 100) + ")");
 
+    // transform the y -lable to vertical
     svg.append("text")
         .attr('transform', d => 'translate(20,20), rotate(90)')
         .attr("x", 0)
         .attr("y", 0)
         .text("Tree Height (M)");
 
+    // only adjust the position to a suitable place
     svg.append("text")
         .attr("text-anchor", "end")
         .attr("x", width-50)
