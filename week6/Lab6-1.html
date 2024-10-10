@@ -128,19 +128,27 @@
             .attr("width", xScale.bandwidth())
             .attr("height", d => height - yScale(d))  // Update the height
             .selectAll("rect");
-            // .append("title")  // Adding the tooltip for new bars
-            // .text(function (d) {
-            //     return d;
-            // });
-
     });
 
     d3.select("#btn-remove").on("click", () => {
-        dataSet.shift();
-        var bars = svg.selectAll("rect").data(dataSet);
-        bars.exit().transition().duration(500).attr("x", width).remove();
-        var texts = svg.selectAll("text").data(dataSet);
-        texts.exit().transition().duration(500).attr("x", width).remove();
+        d3.select("#btn-remove").on("click", () => {
+            dataSet.shift();  // Remove the first data point
+            xScale.domain(d3.range(dataSet.length));
+            var bars = svg.selectAll("rect").data(dataSet);
+            // Remove the exiting bars with transition
+            bars.exit()
+                .transition()
+                .duration(500)
+                .attr("x", width)  // Move removed bars to the right before disappearing
+                .remove();
+
+            bars.transition()
+                .duration(500)
+                .attr("x", (d, i) => xScale(i))  // Adjust the x position of remaining bars
+                .attr("y", d => yScale(d))       // Adjust the y position
+                .attr("width", xScale.bandwidth())  // Adjust the width
+                .attr("height", d => height - yScale(d));  // Adjust the height
+        });
     });
 
     d3.select("#btn").on("click", () => {
