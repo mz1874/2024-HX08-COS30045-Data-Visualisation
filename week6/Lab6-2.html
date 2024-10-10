@@ -71,7 +71,7 @@
             })
             .attr("fill", "red")
             .on("mouseover", function (event, d) {
-                // d3.select(this).attr("fill", "orange");
+                d3.select(this).attr("fill", "orange");
                 var xPosition = parseFloat(d3.select(this).attr("x"))
                 var yPosition = parseFloat(d3.select(this).attr("y"))
                 svg.append("text")
@@ -81,6 +81,7 @@
                     .text(d)
             }).on("mouseout", function () {
             d3.select("#tooltip").remove();
+            d3.select(this).attr("fill", "red");
         })
 
         // .append("title")  // Adding the tooltip
