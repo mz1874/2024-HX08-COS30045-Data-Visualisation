@@ -124,7 +124,7 @@
         bars.enter()
             .append("rect")
             .on("mouseover", function (event, d) {
-                // d3.select(this).attr("fill", "orange");
+                d3.select(this).attr("fill", "orange");
                 var xPosition = parseFloat(d3.select(this).attr("x"))
                 var yPosition = parseFloat(d3.select(this).attr("y"))
                 svg.append("text")
@@ -133,6 +133,7 @@
                     .attr("y", yPosition + 20)
                     .text(d)
             }).on("mouseout", function () {
+            d3.select(this).attr("fill", "red");
             d3.select("#tooltip").remove();
         })
             .attr("x", width)  // New bars start from the right edge
